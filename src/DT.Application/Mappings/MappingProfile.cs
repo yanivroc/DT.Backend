@@ -1,6 +1,6 @@
 using AutoMapper;
-using DT.Domain;
-using DT.Application;
+using Entities = DT.Domain.Entities;
+using Dtos = DT.Application.Dtos;
 
 namespace DT.Application.Mappings;
 

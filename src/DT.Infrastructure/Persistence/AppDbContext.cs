@@ -35,7 +35,7 @@ public class AppDbContext : DbContext
     public DbSet<Pics> Pics { get; set; } = null!;
     public DbSet<Regions> Regions { get; set; } = null!;
     public DbSet<States> States { get; set; } = null!;
-    public DbSet<TimeZone> TimeZone { get; set; } = null!;
+    public DbSet<DT.Domain.Entities.TimeZone> TimeZone { get; set; } = null!;
     public DbSet<UserAgents> UserAgents { get; set; } = null!;
     public DbSet<Videos> Videos { get; set; } = null!;
     public DbSet<WebBuilderContactedPerson> WebBuilderContactedPerson { get; set; } = null!;
@@ -75,7 +75,7 @@ public class AppDbContext : DbContext
         modelBuilder.Entity<Pics>().HasKey(e => e.PicId);
         modelBuilder.Entity<Regions>().HasKey(e => e.Id);
         modelBuilder.Entity<States>().HasKey(e => e.Id);
-        modelBuilder.Entity<TimeZone>().HasKey(e => e.Id);
+        modelBuilder.Entity<DT.Domain.Entities.TimeZone>().HasKey(e => e.Id);
         modelBuilder.Entity<UserAgents>().HasKey(e => e.Id);
         modelBuilder.Entity<Videos>().HasKey(e => e.VideoId);
         modelBuilder.Entity<WebBuilderContactedPerson>().HasKey(e => new { e.ContactedPersons_ContactedPersonId, e.WebBuilders_Id });

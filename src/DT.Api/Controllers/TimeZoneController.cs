@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace DT.Api.Controllers;
 
 [Route("api/timezone")]
-public class TimeZoneController : CrudControllerBase<TimeZone, TimeZoneDto, CreateTimeZoneDto, UpdateTimeZoneDto>
+public class TimeZoneController : CrudControllerBase<DT.Domain.Entities.TimeZone, TimeZoneDto, CreateTimeZoneDto, UpdateTimeZoneDto>
 {
-    public TimeZoneController(IGenericRepository<TimeZone> repo, IMapper mapper) : base(repo, mapper) { }
+    public TimeZoneController(IGenericRepository<DT.Domain.Entities.TimeZone> repo, IMapper mapper) : base(repo, mapper) { }
 }
