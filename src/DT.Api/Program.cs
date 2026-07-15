@@ -33,10 +33,16 @@ builder.Services
             ValidateIssuerSigningKey = true,
             ValidIssuer = builder.Configuration["Jwt:Issuer"],
             ValidAudience = builder.Configuration["Jwt:Audience"],
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey)),
+            RoleClaimType = System.Security.Claims.ClaimTypes.Role,
+            NameClaimType = System.Security.Claims.ClaimTypes.NameIdentifier
         };
     });
-builder.Services.AddAuthorization();
+builder.Services.AddAuthorization(opts =>
+{
+    opts.AddPolicy("AdminOnly",   p => p.RequireRole("Admin"));
+    opts.AddPolicy("UserOrAdmin", p => p.RequireRole("Admin", "User"));
+});
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
