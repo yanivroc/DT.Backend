@@ -5,7 +5,7 @@ using Microsoft.OpenApi.Models;
 using Serilog;
 using DT.Api.Auth;
 using DT.Infrastructure;
-using AutoMapper;
+using DT.Application.Mappings;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,8 +15,8 @@ builder.Host.UseSerilog((ctx, lc) => lc.ReadFrom.Configuration(ctx.Configuration
 // Infra (DbContext, repositories, Dapper)
 builder.Services.AddInfrastructure(builder.Configuration);
 
-// AutoMapper
-builder.Services.AddAutoMapper(cfg => cfg.AddMaps(typeof(Program).Assembly));
+// AutoMapper - ensure profiles from DT.Application are discovered
+builder.Services.AddAutoMapper(cfg => cfg.AddMaps(typeof(MappingProfile).Assembly));
 
 // JWT
 var jwtKey = builder.Configuration["Jwt:Key"] ?? throw new InvalidOperationException("Jwt:Key missing");
